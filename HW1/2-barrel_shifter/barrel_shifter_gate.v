@@ -10,12 +10,12 @@ reg zero= 0;
 
 mux x1_0(x1[0],in[0],zero,shift[0]);
 mux x1_1(x1[1],in[1],in[0],shift[0]);
-mux x1_2(x1[1],in[2],in[1],shift[0]);
-mux x1_3(x1[1],in[3],in[2],shift[0]);
-mux x1_4(x1[1],in[4],in[3],shift[0]);
-mux x1_5(x1[1],in[5],in[4],shift[0]);
-mux x1_6(x1[1],in[6],in[5],shift[0]);
-mux x1_7(x1[1],in[7],in[6],shift[0]);
+mux x1_2(x1[2],in[2],in[1],shift[0]);
+mux x1_3(x1[3],in[3],in[2],shift[0]);
+mux x1_4(x1[4],in[4],in[3],shift[0]);
+mux x1_5(x1[5],in[5],in[4],shift[0]);
+mux x1_6(x1[6],in[6],in[5],shift[0]);
+mux x1_7(x1[7],in[7],in[6],shift[0]);
 
 mux x2_0(x2[0],x1[0],zero,shift[1]);
 mux x2_1(x2[1],x1[1],zero,shift[1]);
