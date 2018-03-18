@@ -4,8 +4,8 @@ input  [2:0] shift;
 output [7:0] out;
 
 /*Write your code here*/
-reg  [7:0] x1;
-reg  [7:0] x2;
+wire  [7:0] x1;
+wire  [7:0] x2;
 reg zero= 0;
 
 mux x1_0(x1[0],in[0],zero,shift[0]);
