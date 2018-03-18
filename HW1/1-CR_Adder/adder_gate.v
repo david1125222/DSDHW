@@ -30,14 +30,7 @@ module full_adder(x1,y1,ci,sum,co);
     and g1(yc, y1, ci);
     and g2(cx, x1, ci);
     or g3(co, xy, yc, cx);
-    xor g1(sum, x1,y1, ci);
+    xor g4(sum, x1,y1, ci);
 
 endmodule
 
-module full_adder_sum(sum,x1,y1,ci);
-    input x1, y1, ci;
-    output sum, co;
-
-    xor g1(sum, x1,y1, ci);
-
-endmodule
