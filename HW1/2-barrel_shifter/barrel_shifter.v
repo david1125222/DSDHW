@@ -5,6 +5,8 @@ output [7:0] out;
 
 /*Write your code here*/
 reg zero= 0;
+wire  [7:0] x1;
+wire  [7:0] x2;
 /*wire  [7:0] x1;
 wire  [7:0] x2;
 reg zero= 0;
