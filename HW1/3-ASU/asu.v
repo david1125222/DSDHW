@@ -9,7 +9,7 @@ reg [7:0] adder;
 reg [7:0] shifter;
 reg carry1;
 
-adder_gate adder_1(x, y, carry1, adder);
+adder adder_1(x, y, carry1, adder);
 barrel_shifter shifter_1(x, y[2:0], shifter);
 assign out[7:0] = (mode==1'b1) ?   adder[7:0]: shifter[7:0];
 assign carry = (mode==1'b1) ? carry1 : 1'b0;
