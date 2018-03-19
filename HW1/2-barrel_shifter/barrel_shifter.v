@@ -17,8 +17,8 @@ assign x2[1:0]=(x1[1:0] & ~shift[1]) ;
 assign out[7:4]=(x2[7:4] & ~shift[2]) | (x2[3:0] & shift[2]);
 assign out[3:0]=(x2[3:0] & ~shift[2]) ;
 */
-assign x1 =(shift[0]==1'b1) ?   in[7:0]* 2'b10: in[7:0];
-assign x2 =(shift[1]==1'b1) ?   x1[7:0]* 3'b100 : x1[7:0];
-assign out =(shift[2]==1'b1) ?   x2[7:0]* 5'b10000 : x2[7:0];
+assign x1 =(shift[0]==1'b1) ?   in* 2'b10: in;
+assign x2 =(shift[1]==1'b1) ?   x1* 3'b100 : x1;
+assign out =(shift[2]==1'b1) ?   x2* 5'b10000 : x2;
 /*End of code*/
 endmodule
