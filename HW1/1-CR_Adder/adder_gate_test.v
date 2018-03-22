@@ -80,8 +80,8 @@ end
 initial begin
 $dumpfile("adder.vcd");
 $dumpvars;
-/* 	$fsdbDumpfile("adder.fsdb");
-	$fsdbDumpvars;  */
+ 	$fsdbDumpfile("adder.fsdb");
+	$fsdbDumpvars;  
 end
 
 endmodule
