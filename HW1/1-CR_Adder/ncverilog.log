@@ -1,0 +1,19 @@
+ncverilog: 10.20-s114: (c) Copyright 1995-2012 Cadence Design Systems, Inc.
+TOOL:	ncverilog	10.20-s114: Started on Mar 22, 2018 at 17:21:18 CST
+ncverilog
+	adder_gate_test.v
+	adder_gate.v
+	+access+r
+Loading snapshot worklib.adder_gate_test:v .................... Done
+ncsim> source /usr/cad/cadence/INCISIV/cur/tools/inca/files/ncsimrc
+ncsim> run
+==========================================
+
+======  Congratulation! You Pass!  =======
+
+==========================================
+
+Simulation complete via $finish(1) at time 220 NS + 1
+./adder_gate_test.v:75 		$finish;
+ncsim> exit
+TOOL:	ncverilog	10.20-s114: Exiting on Mar 22, 2018 at 17:21:19 CST  (total: 00:00:01)

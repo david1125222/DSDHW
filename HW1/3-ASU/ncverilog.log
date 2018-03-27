@@ -1,0 +1,50 @@
+ncverilog: 10.20-s114: (c) Copyright 1995-2012 Cadence Design Systems, Inc.
+TOOL:	ncverilog	10.20-s114: Started on Mar 19, 2018 at 14:30:13 CST
+ncverilog
+	asu_test.v
+	asu.v
+	adder.v
+	barrel_shifter.v
+	+access+r
+file: asu.v
+	module worklib.asu:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.adder:v <0x437a81b2>
+			streams:   1, words:   318
+		worklib.asu:v <0x68f3e0ba>
+			streams:   1, words:   205
+		worklib.asu_test:v <0x25e98e78>
+			streams:  10, words:  6974
+		worklib.barrel_shifter:v <0x62d59dae>
+			streams:   4, words:  1104
+	Loading native compiled code:     .................... Done
+	Building instance specific data structures.
+	Design hierarchy summary:
+		                  Instances  Unique
+		Modules:                  4       4
+		Registers:               14      14
+		Scalar wires:             5       -
+		Expanded wires:           8       1
+		Vectored wires:           6       -
+		Always blocks:            3       3
+		Initial blocks:           5       5
+		Cont. assignments:        5       6
+		Simulation timescale:  10ps
+	Writing initial simulation snapshot: worklib.asu_test:v
+Loading snapshot worklib.asu_test:v .................... Done
+ncsim> source /usr/cad/cadence/INCISIV/cur/tools/inca/files/ncsimrc
+ncsim> run
+==========================================
+
+======  Congratulation! You Pass!  =======
+
+==========================================
+
+Simulation complete via $finish(1) at time 220 NS + 1
+./asu_test.v:81 		$finish;
+ncsim> exit
+TOOL:	ncverilog	10.20-s114: Exiting on Mar 19, 2018 at 14:30:15 CST  (total: 00:00:02)

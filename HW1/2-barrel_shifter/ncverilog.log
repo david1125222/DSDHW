@@ -1,0 +1,45 @@
+ncverilog: 10.20-s114: (c) Copyright 1995-2012 Cadence Design Systems, Inc.
+TOOL:	ncverilog	10.20-s114: Started on Mar 19, 2018 at 11:30:14 CST
+ncverilog
+	barrel_test.v
+	barrel_shifter.v
+	+access+r
+Recompiling... reason: file './barrel_shifter.v' is newer than expected.
+	expected: Mon Mar 19 11:28:45 2018
+	actual:   Mon Mar 19 11:30:09 2018
+file: barrel_shifter.v
+	module worklib.barrel_shifter:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.barrel_shifter:v <0x27645731>
+			streams:   4, words:  1123
+	Loading native compiled code:     .................... Done
+	Building instance specific data structures.
+	Design hierarchy summary:
+		                  Instances  Unique
+		Modules:                  2       2
+		Registers:               12      12
+		Scalar wires:             1       -
+		Vectored wires:           5       -
+		Always blocks:            3       3
+		Initial blocks:           5       5
+		Cont. assignments:        3       3
+		Pseudo assignments:       1       1
+		Simulation timescale:  10ps
+	Writing initial simulation snapshot: worklib.barrel_test:v
+Loading snapshot worklib.barrel_test:v .................... Done
+ncsim> source /usr/cad/cadence/INCISIV/cur/tools/inca/files/ncsimrc
+ncsim> run
+==========================================
+
+======  Congratulation! You Pass!  =======
+
+==========================================
+
+Simulation complete via $finish(1) at time 180 NS + 1
+./barrel_test.v:75 		$finish;
+ncsim> exit
+TOOL:	ncverilog	10.20-s114: Exiting on Mar 19, 2018 at 11:30:15 CST  (total: 00:00:01)
