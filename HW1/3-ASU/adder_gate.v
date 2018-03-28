@@ -60,22 +60,22 @@ module fourBitPFA(A,B,Cin,S,Carry);
 //CLA 
 
 
-        and (w3,P[0],Cin);
-        or (c1,G[0],w3);
-        and (w4,P[1],G[0]);
-        and (w5,P[1],P[0],Cin);
-        or (c2,G[1],w4,w5);
-        and (w6,P[2],G[1]);
-        and (w7,P[2],P[1],G[0]);
-        and (w8,P[2],P[1],P[0],Cin);
-        or (c3,G[2],w6,w7,w8);
-        and (w9,P[3],G[2]);
-        and (w10,P[3],P[2],G[1]);
-        and (w11,P[3],P[2],P[1],G[0]);
-        and (w12,P[3],P[2],P[1],P[0],Cin);
-        or(Carry,G[3],w9,w10,w11,w12);
-        xor(S[0],P[0],Cin);
-        xor(S[1],P[1],c1);
-        xor(S[2],P[2],c2);
-        xor(S[3],P[3],c3);
+        and #1 (w3,P[0],Cin);
+        or #1 (c1,G[0],w3);
+        and #1 (w4,P[1],G[0]);
+        and #1 (w5,P[1],P[0],Cin);
+        or #1 (c2,G[1],w4,w5);
+        and #1 (w6,P[2],G[1]);
+        and #1 (w7,P[2],P[1],G[0]);
+        and #1 (w8,P[2],P[1],P[0],Cin);
+        or #1 (c3,G[2],w6,w7,w8);
+        and #1 (w9,P[3],G[2]);
+        and #1 (w10,P[3],P[2],G[1]);
+        and #1 (w11,P[3],P[2],P[1],G[0]);
+        and #1 (w12,P[3],P[2],P[1],P[0],Cin);
+        or #1 (Carry,G[3],w9,w10,w11,w12);
+        xor #1 (S[0],P[0],Cin);
+        xor #1 (S[1],P[1],c1);
+        xor #1 (S[2],P[2],c2);
+        xor #1 (S[3],P[3],c3);
 endmodule
