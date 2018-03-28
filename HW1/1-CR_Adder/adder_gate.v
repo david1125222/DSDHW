@@ -26,11 +26,11 @@ module full_adder(x1,y1,ci,sum,co);
     output co,sum;
     wire xy,yc,cx;
 
-    and g0(xy, x1, y1);
-    and g1(yc, y1, ci);
-    and g2(cx, x1, ci);
-    or g3(co, xy, yc, cx);
-    xor g4(sum, x1,y1, ci);
+    and #1 g0(xy, x1, y1);
+    and #1 g1(yc, y1, ci);
+    and #1 g2(cx, x1, ci);
+    or #1 g3(co, xy, yc, cx);
+    xor #1 g4(sum, x1,y1, ci);
 
 endmodule
 
