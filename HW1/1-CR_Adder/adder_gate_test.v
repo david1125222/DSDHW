@@ -4,7 +4,7 @@
 `define OUTFILE "out_golden.pattern" 
 
 module adder_gate_test;
-parameter pattern_num = 100;
+parameter pattern_num = 10;
 wire [7:0] out;
 wire carry;
 reg [7:0] x, y;
