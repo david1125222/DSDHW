@@ -34,9 +34,9 @@ input 	a,b,sel;
 output 	x;
 wire sel_i,w1,w2;
 
-not #2.5  n0(sel_i,sel);
+not  n0(sel_i,sel);
 and  a1(w1,a,sel_i);
 and  a2(w2,b,sel);
-or   o1(x,w1,w2);
+or   #2.5  o1(x,w1,w2);
 
 endmodule
