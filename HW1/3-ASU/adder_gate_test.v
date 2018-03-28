@@ -1,5 +1,5 @@
 `timescale 1ns/10ps
-`define CYCLE 16.0
+`define CYCLE 7.0
 `define INFILE "in.pattern"
 `define OUTFILE "out_golden.pattern" 
 
