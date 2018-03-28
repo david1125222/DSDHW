@@ -24,7 +24,7 @@ module pfa(a,b,p,g);  //A one PFA. I need 16 of them5
     //wire w;
     //reg a,b,c;
     //wire sum,p,g;
-    input a,b,c;
+    input a,b;
     output p,g;
 
     //xor (w,a,b);     //repeated P. May need it may not. 
