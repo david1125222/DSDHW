@@ -9,8 +9,8 @@ output [7:0] out;
 wire carry_mid;
 
     reg cin= 0;
-    fourBitPFA(x[3:0],y[3:0],cin,out[3:0],carry_mid);
-    fourBitPFA(x[7:4],y[7:4],cin,out[7:4],carry);
+    fourBitPFA four_bit_adder1(x[3:0],y[3:0],cin,out[3:0],carry_mid);
+    fourBitPFA four_bit_adder1(x[7:4],y[7:4],cin,out[7:4],carry);
 
 
 
