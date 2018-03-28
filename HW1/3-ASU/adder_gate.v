@@ -73,7 +73,7 @@ module fourBitPFA(A,B,Cin,S,Carry);
         and (w10,P[3],P[2],G[1]);
         and (w11,P[3],P[2],P[1],G[0]);
         and (w12,P[3],P[2],P[1],P[0],Cin);
-        or(Carry,w9,w10,w11,w12);
+        or(Carry,G[3],w9,w10,w11,w12);
         xor(S[0],P[0],Cin);
         xor(S[1],P[1],c1);
         xor(S[2],P[2],c2);
