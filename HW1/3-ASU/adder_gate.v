@@ -4,33 +4,77 @@ output carry;
 output [7:0] out;
 
 
+
 /*Write your code here*/
-    wire c1,c2,c3,c4,c5,c6,c7,c8;
+wire carry_mid;
+
     reg cin= 0;
-    full_adder fa1(x[0],y[0],cin,out[0],c1);
-    full_adder fa2(x[1],y[1],c1,out[1],c2);
-    full_adder fa3(x[2],y[2],c2,out[2],c3);
-    full_adder fa4(x[3],y[3],c3,out[3],c4);
-    full_adder fa5(x[4],y[4],c4,out[4],c5);
-    full_adder fa6(x[5],y[5],c5,out[5],c6);
-    full_adder fa7(x[6],y[6],c6,out[6],c7);
-    full_adder fa8(x[7],y[7],c7,out[7],carry);
+    fourBitPFA(x[3:0],y[3:0],cin,out[3:0],carry_mid);
+    fourBitPFA(x[7:4],y[7:4],cin,out[7:4],carry);
+
 
 
 /*End of code*/
 
 endmodule
 
-module full_adder(x1,y1,ci,sum,co);
-    input x1, y1, ci;
-    output co,sum;
-    wire xy,yc,cx;
 
-    and #1 g0(xy, x1, y1);
-    and #1 g1(yc, y1, ci);
-    and #1 g2(cx, x1, ci);
-    or #1 g3(co, xy, yc, cx);
-    xor #1 g4(sum, x1,y1, ci);
 
+module pfa(a,b,p,g);  //A one PFA. I need 16 of them5
+    //wire w;
+    //reg a,b,c;
+    //wire sum,p,g;
+    input a,b,c;
+    output p,g;
+
+    //xor (w,a,b);     //repeated P. May need it may not. 
+    and (g,a,b);  //Gi
+    xor (p,a,b);   //Pi
+    //xor (sum,w,c);  //sum 
 endmodule
+                //input    output   
+module fourBitPFA(A,B,Cin,S,Carry);
+    input [3:0] A,B;
+    input Cin;
+    output [3:0] S;
+    output Carry;    
+    wire [3:0] P,G;
+    wire p0,g0;
+    wire b1,b2,b3;
+    wire w,w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12;
+    wire c1,c2,c3;
 
+        pfa PFA0(A[0],B[0],P[0],G[0]),
+            PFA1(A[1],B[1],P[1],G[1]),    
+            PFA2(A[2],B[2],P[2],G[2]),
+            PFA3(A[3],B[3],P[3],G[3]);
+        //propagate
+        //and (p0,P[3],P[2],P[1],P[0]);
+
+        //GENERATE
+        //and (w,P[3],G[2]);
+        //and (w1,P[3],P[2],G[1]);
+        //and (w2,P[3],P[2],P[1],G[0]);
+        //or (w,w1,w2);
+//CLA 
+
+
+        and (w3,P[0],Cin);
+        or (c1,G[0],w3);
+        and (w4,P[1],G[0]);
+        and (w5,P[1],P[0],Cin);
+        or (c2,G[1],w4,w5);
+        and (w6,P[2],G[1]);
+        and (w7,P[2],P[1],G[0]);
+        and (w8,P[2],P[1],P[0],Cin);
+        or (c3,G[2],w6,w7,w8);
+        and (w9,P[3],G[2]);
+        and (w10,P[3],P[2],G[1]);
+        and (w11,P[3],P[2],P[1],G[0]);
+        and (w12,P[3],P[2],P[1],P[0],Cin);
+        or(Carry,w9,w10,w11,w12);
+        xor(S[0],P[0],Cin);
+        xor(S[1],P[1],c1);
+        xor(S[2],P[2],c2);
+        xor(S[3],P[3],c3);
+endmodule
