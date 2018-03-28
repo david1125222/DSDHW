@@ -28,7 +28,7 @@ module full_adder(x1,y1,ci,sum,co);
 
     and #1 g0(xy, x1, y1);
     and #1 g1(yc, y1, ci);
-    and #1 g2(cx, x1, ci);
+    and #1 g2(cx, x1, ci);ssh
     or #1 g3(co, xy, yc, cx);
     xor #1 g4(sum, x1,y1, ci);
 
