@@ -1,5 +1,5 @@
 `timescale 1ns/10ps
-`define CYCLE 6
+`define CYCLE 9
 `define SELFILE "Msel.pattern"
 `define INFILE "Min.pattern"
 `define OUTFILE "Mout_golden.pattern" 
