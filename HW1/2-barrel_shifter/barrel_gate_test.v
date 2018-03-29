@@ -1,5 +1,5 @@
 `timescale 1ns/10ps
-`define CYCLE 10
+`define CYCLE 16
 `define INFILE "Bin.pattern"
 `define OUTFILE "Bout_golden.pattern" 
 
