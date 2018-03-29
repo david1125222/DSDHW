@@ -12,15 +12,8 @@ reg zero=0;
 
 adder_gate adder_1(x, y, carry1, adder);
 barrel_shifter_gate shifter_1(x, y[2:0], shifter);
-mux_2 out_0(out[0], shifter[0], adder[0], mode);
-mux_2 out_1(out[1], shifter[1], adder[1], mode);
-mux_2 out_2(out[2], shifter[2], adder[2], mode);
-mux_2 out_3(out[3], shifter[3], adder[3], mode);
-mux_2 out_4(out[4], shifter[4], adder[4], mode);
-mux_2 out_5(out[5], shifter[5], adder[5], mode);
-mux_2 out_6(out[6], shifter[6], adder[6], mode);
-mux_2 out_7(out[7], shifter[7], adder[7], mode);
-mux_2 out_8(carry, zero, carry1, mode);
+assign #2.5 out[7:0] = (mode==1'b1) ?   adder[7:0]: shifter[7:0];
+assign #2.5 carry = (mode==1'b1) ? carry1 : 1'b0;
  
 
 
