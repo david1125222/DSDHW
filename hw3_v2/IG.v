@@ -12,7 +12,7 @@ output [19:0] grad_do;
 //------------------------------------------------------------------
 // reg & wire
 reg [15:0] counter,counter_1, counter_256;
-assign counter=4'h0000;
+assign counter=16'h0000;
 reg [7:0] x_1, x_2, x_3;
 reg [19:0] grad;
 reg ctrl;
@@ -90,10 +90,7 @@ always@(negedge clk) begin
                 case (counter)
                     16'h0000:x_1=img_di;
                     16'h0001:x_2=img_di;
-                default:  
-                    x_1<=x_1;
-                    x_2<=x_2;
-                    x_3<=x_3;
+
                 endcase
             end
             else if(counter == 3) begin
