@@ -71,7 +71,7 @@ always@(posedge clk) begin
             end
         end
         else begin
-            if(counter<65279) begin
+            if(counter<65280) begin
                 if(cal) begin
                     img_addr_reg<=counter+1;
                     counter<=counter+1;
@@ -108,7 +108,7 @@ always@(negedge clk) begin
             end
         end
         else begin
-            if(counter<65279) begin
+            if(counter<65280) begin
                 if(cal) begin
                     x_2=img_di;
                     wr=1'b1;
