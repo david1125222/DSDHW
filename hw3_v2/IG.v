@@ -111,7 +111,7 @@ always@(negedge clk) begin
                 end
                 else begin
                     x_3=img_di;
-                    x_1=x_2
+                    x_1=x_2;
                     wr=1'b0;
                 end
             end
