@@ -93,8 +93,8 @@ always@(negedge clk) begin
         if(init) begin
             if(counter<2) begin
                 case (counter)
-                    16'h0000:x_1=img_di;
-                    16'h0001:x_2=img_di;
+                    16'h0001:x_1=img_di;
+                    16'h0002:x_2=img_di;
 
                 endcase
             end
@@ -112,7 +112,7 @@ always@(negedge clk) begin
                 if(cal) begin
                     x_2=img_di;
                     wr=1'b1;
-                    grad_addr_reg=counter;
+                    grad_addr_reg=counter-1;
                 end
                 else begin
                     x_3=img_di;
