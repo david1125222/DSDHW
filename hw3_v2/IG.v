@@ -59,9 +59,9 @@ always@(posedge clk) begin
                 img_addr_reg<=counter;
                 counter<=counter+1;
                 case (counter)
-                    16'h0000:img_addr_reg<=0;
-                    16'h0001:img_addr_reg<=1;
-                    16'h0002:img_addr_reg<=256;
+                    16'h0001:img_addr_reg<=0;
+                    16'h0002:img_addr_reg<=1;
+                    16'h0003:img_addr_reg<=256;
                 default:  img_addr_reg<= 0;
                 endcase
             end
