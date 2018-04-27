@@ -123,17 +123,6 @@ always@(negedge clk) begin
 
 end
 
-always@(negedge clk) begin
-    if(rd == 1'b0)
-        if(counter==4'dffff)
-            ctrl<= 1'b0;
-        else begin
-            ctrl<=ctrl+1;
-
-
-    counter<=counter+1;
-end
-
 
 endmodule
 
