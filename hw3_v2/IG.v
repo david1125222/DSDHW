@@ -12,18 +12,16 @@ output [19:0] grad_do;
 //------------------------------------------------------------------
 // reg & wire
 reg [15:0] counter,counter_1, counter_256;
-assign counter=16'h0000;
+
 reg [7:0] x_1, x_2, x_3;
-reg [19:0] grad;
+wire [19:0] grad;
 reg ctrl;
 reg cal;
 reg rd,wr,init;
 reg [15:0] img_addr_reg,grad_addr_reg;
 reg done_reg;
 wire signed[9:0] gx, gy;
-assign cal = 1'b0;
-assign ctrl = 1'b0;
-assign done_reg=1'b0;
+
 
 
 
@@ -39,7 +37,14 @@ assign gx = x_2-x_1;
 assign gy = x_3-x_1;
 assign grad = {gx,gy};
 assign grad_do=grad;
+//reset
+always@(negedge reset) begin
+    cal = 1'b0;
+    ctrl=1'b0;
+    done_reg=1'b0;
+    counter=16'h0000;
 
+end
 //------------------------------------------------------------------
 // sequential part
 always@(negedge reset) begin
