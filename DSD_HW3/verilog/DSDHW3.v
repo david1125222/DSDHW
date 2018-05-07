@@ -118,7 +118,7 @@ module SingleCycle_MIPS(
     assign ALU_data1 = register_rd_data1;
 
     always@(negedge clk)begin
-        $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,wen=%b,cen=%b",pc,ReadDataMem,register_wr_data,WEN,CEN);
+        $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,Alu_data1=%h,ALU_data2=%h,Inst_15_0_sign_extend=%h",pc,ReadDataMem,register_wr_data,Alu_data1,ALU_data2,Inst_15_0_sign_extend);
     end
 
 SignExtend SignExtend_0(Inst_15_0,Inst_15_0_sign_extend);
