@@ -117,7 +117,7 @@ module SingleCycle_MIPS(
     assign RF_writedata=register_wr_data;
     assign ALU_data1 = register_rd_data1;
 
-    always@(posedge clk)begin
+    always@(negedge clk)begin
         $display("PC=%h,ReadDataMem=%h,register_wr_data%h",pc,ReadDataMem,register_wr_data);
     end
 
