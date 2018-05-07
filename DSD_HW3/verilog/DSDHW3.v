@@ -324,7 +324,7 @@ module Control(
 );
 
 input [5:0] instruction;
-output RegDst,Jump,Branch,MemRead,MemToReg,ALUOp,MemWrite,ALUSrc,RegWrite;
+output RegDst,Jump,Branch,MemRead,MemToReg,MemWrite,ALUSrc,RegWrite;
 output [1:0] ALUOp;
 reg RegDst_reg,Jump_reg,Branch_reg,MemRead_reg,MemToReg_reg,MemWrite_reg,ALUSrc_reg,RegWrite_reg;
 reg ALUOp_reg[1:0];
