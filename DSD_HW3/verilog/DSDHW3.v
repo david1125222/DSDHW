@@ -329,6 +329,15 @@ output [1:0] ALUOp;
 reg RegDst_reg,Jump_reg,Branch_reg,MemRead_reg,MemToReg_reg,MemWrite_reg,ALUSrc_reg,RegWrite_reg;
 reg ALUOp_reg[1:0];
 
+`define BEQ  6'b000100
+`define LB   6'b100000
+`define LW   6'b100011
+`define SB   6'b101000
+`define SW   6'b101011
+`define JR   6'b001000
+`define J    6'b000010
+`define JAL  6'b000011
+
 assign RegDst= (opcode==6'b0);
 assign Jump=(opcode==`J)   || (opcode==`JAL);
 assign Branch=(opcode==`BEQ);
