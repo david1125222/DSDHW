@@ -108,8 +108,8 @@ module SingleCycle_MIPS(
     assign Inst_15_0   = IR[15:0];
     assign Inst_15_0_sign_extend_shift_2 = Inst_15_0_sign_extend<<2;
     assign Mux_sel_a = Branch & zero;
-    assign WEN =   (~MemWrite) | MemRead;
-    assign CEN = MemRead | MemWrite;
+    assign WEN =   !MemWrite;
+    assign CEN =instruction_5_0[5];
     assign OEN = 0;
     assign A = ALU_data2;
     assign ReadData2=register_rd_data2;
