@@ -350,7 +350,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=0;
                 Branch_reg=0;
-                ALUOp=2'b10;
+                ALUOp_reg=2'b10;
                 Jump_reg=0;
             end
             6'b100011: begin
@@ -361,7 +361,7 @@ always@(*)
                 MemRead_reg=1;
                 MemWrite_reg=0;
                 Branch_reg=0;
-                ALUOp=2'b00;
+                ALUOp_reg=2'b00;
                 Jump_reg=0;
             end
             6'b101011: begin
@@ -370,7 +370,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=1;
                 Branch_reg=0;
-                ALUOp=2'b00;
+                ALUOp_reg=2'b00;
                 Jump_reg=0;
             end
             6'b000100: begin
@@ -379,7 +379,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=0;
                 Branch_reg=1;
-                ALUOp=2'b01;
+                ALUOp_reg=2'b01;
                 Jump_reg=0;
             end
             6'b000010: begin
@@ -469,8 +469,8 @@ endmodule
 module PC(
     clk,
     rst_n,
-    PCin
-    PCnext,
+    PCin,
+    PCnext
 );
     reg [31:0] PC_value;
     input clk,rst_n;
