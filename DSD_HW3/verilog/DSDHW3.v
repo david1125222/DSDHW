@@ -338,16 +338,16 @@ reg ALUOp_reg[1:0];
 `define J    6'b000010
 `define JAL  6'b000011
 
-assign RegDst= (opcode==6'b0);
-assign Jump=(opcode==`J)   || (opcode==`JAL);
-assign Branch=(opcode==`BEQ);
-assign MemRead=(opcode==`LW)  || (opcode==`LB);
-assign MemToReg=(opcode==`LW) || (opcode==`LB);
-assign MemWrite=(opcode==`SW)  || (opcode==`SB);
-assign ALUSrc=(opcode!=6'b0)&& (opcode!=`BEQ);
-assign RegWrite=(opcode!=`SW)   &&  (opcode!=`SB)  &&  (opcode!=`BEQ)  && (opcode!=`J)    &&  (!((opcode==6'd0) &&  (funct==`JR)));
-assign ALUOp[1]=(opcode==6'b0);
-assign ALUOp[0]=(opcode==`BEQ);
+assign RegDst= (instruction==6'b0);
+assign Jump=(instruction==`J)   || (instruction==`JAL);
+assign Branch=(instruction==`BEQ);
+assign MemRead=(instruction==`LW)  || (instruction==`LB);
+assign MemToReg=(instruction==`LW) || (instruction==`LB);
+assign MemWrite=(instruction==`SW)  || (instruction==`SB);
+assign ALUSrc=(instruction!=6'b0)&& (instruction!=`BEQ);
+assign RegWrite=(instruction!=`SW)   &&  (instruction!=`SB)  &&  (instruction!=`BEQ)  && (instruction!=`J)    &&  (!((instruction==6'd0) &&  (funct==`JR)));
+assign ALUOp[1]=(instruction==6'b0);
+assign ALUOp[0]=(instruction==`BEQ);
 
 
 
