@@ -324,7 +324,7 @@ module Control(
 );
 
 input [5:0] instruction;
-output RegDst,Jump,Branch,MemRead,MemToReg,MemWrite,ALUSrc,RegWrite;
+output RegDst,Jump,Branch,MemRead,MemToReg,ALUOp,MemWrite,ALUSrc,RegWrite;
 output [1:0] ALUOp;
 reg RegDst_reg,Jump_reg,Branch_reg,MemRead_reg,MemToReg_reg,MemWrite_reg,ALUSrc_reg,RegWrite_reg;
 reg ALUOp_reg[1:0];
@@ -337,7 +337,7 @@ assign MemToReg=MemToReg_reg;
 assign MemWrite=MemRead_reg;
 assign ALUSrc=ALUSrc_reg;
 assign RegWrite=RegWrite_reg;
-assign ALUOp[1:0]=ALUOp_reg[1:0];
+assign ALUOp=ALUOp_reg;
 
 always@(*)  
     begin  
@@ -350,7 +350,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=0;
                 Branch_reg=0;
-                ALUOp_reg[1:0]=2'b10;
+                ALUOp_reg=2'b10;
                 Jump_reg=0;
             end
             6'b100011: begin
@@ -361,7 +361,7 @@ always@(*)
                 MemRead_reg=1;
                 MemWrite_reg=0;
                 Branch_reg=0;
-                ALUOp_reg[1:0]=2'b00;
+                ALUOp_reg=2'b00;
                 Jump_reg=0;
             end
             6'b101011: begin
@@ -370,7 +370,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=1;
                 Branch_reg=0;
-                ALUOp_reg[1:0]=2'b00;
+                ALUOp_reg=2'b00;
                 Jump_reg=0;
             end
             6'b000100: begin
@@ -379,7 +379,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=0;
                 Branch_reg=1;
-                ALUOp_reg[1:0]=2'b01;
+                ALUOp_reg=2'b01;
                 Jump_reg=0;
             end
             6'b000010: begin
