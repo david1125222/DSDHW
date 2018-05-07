@@ -109,7 +109,7 @@ module SingleCycle_MIPS(
     assign Inst_15_0_sign_extend_shift_2 = Inst_15_0_sign_extend<<2;
     assign Mux_sel_a = Branch & zero;
     assign WEN =   !MemWrite;
-    assign CEN =Inst_5_0[5]? 1:0;
+    assign CEN =IR[5]? 1:0;
     assign OEN = 0;
     assign A = ALU_data2;
     assign ReadData2=register_rd_data2;
