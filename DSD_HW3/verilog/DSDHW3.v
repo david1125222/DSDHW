@@ -451,7 +451,8 @@ module PC(
     end
     always@(posedge clk)
     begin
-        PC_value<=PCin;
+        if(rst_n)
+            PC_value<=PCin;
     end
 
 endmodule
