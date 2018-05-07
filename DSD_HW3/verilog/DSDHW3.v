@@ -63,6 +63,7 @@ module SingleCycle_MIPS(
     wire [15:0] Inst_15_0;
     //wire [31:0] shamt; //Shift Amount for SLL and SRL??
     wire [31:0] pc;        //Program Counter
+    wire [31:)] PCnext;
     wire [5:0] opcode;
     wire [5:0] funct;
     //wire bcond;
