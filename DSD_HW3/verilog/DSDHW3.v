@@ -203,8 +203,8 @@ mux_2x1_5bit mux_2x1_d(
 
 mux_2x1 mux_2x1_e(
     .ip1(Inst_15_0_sign_extend), 
-    .ip0(register_rd_data2, 
-    .sel(ALUSrc), 
+    .ip0(register_rd_data2), 
+    .sel(ALUSrc),
     .out(ALU_data2)
 );
 
