@@ -437,7 +437,7 @@ module PC(
     output [31:0] PCnext;
     assign PCnext=PC_value;
 
-    always@(negedge rst_n)
+    always@(posedge rst_n)
     begin
         PC_value<=31'b0;
     end
