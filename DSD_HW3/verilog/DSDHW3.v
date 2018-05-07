@@ -115,7 +115,7 @@ module SingleCycle_MIPS(
     assign IR_addr=pc;
     assign RF_writedata=register_wr_data;
     always@(posedge clk)begin
-        $display("PC=%h,IR_addr=%h",pc,IR_addr);
+        $display("PC=%h,IR_addr=%h,pc_plus_4=%h,Mux_out_a=%h",pc,IR_addr,pc_plus_4,Mux_out_a);
     end
 
 SignExtend SignExtend_0(Inst_15_0,Inst_15_0_sign_extend);
