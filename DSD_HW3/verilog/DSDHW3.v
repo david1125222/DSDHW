@@ -112,6 +112,8 @@ module SingleCycle_MIPS(
     assign OEN = 0;
     assign A = ALU_data2;
     assign ReadData2=register_rd_data2;
+    assign IR_addr=pc;
+    assign RF_writedata=register_wr_data;
 
 SignExtend SignExtend_0(Inst_15_0,Inst_15_0_sign_extend);
 
