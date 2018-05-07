@@ -329,72 +329,19 @@ output [1:0] ALUOp;
 reg RegDst_reg,Jump_reg,Branch_reg,MemRead_reg,MemToReg_reg,MemWrite_reg,ALUSrc_reg,RegWrite_reg;
 reg ALUOp_reg[1:0];
 
-assign RegDst=RegDst_reg;
-assign Jump=Jump_reg;
-assign Branch=Branch_reg;
-assign MemRead=MemRead_reg;
-assign MemToReg=MemToReg_reg;
-assign MemWrite=MemRead_reg;
-assign ALUSrc=ALUSrc_reg;
-assign RegWrite=RegWrite_reg;
-assign ALUOp=ALUOp_reg;
-
-always@(*)  
-    begin  
-        case(instruction)
-            6'b000000: begin
-                RegDst_reg=1;
-                ALUSrc_reg=0;
-                MemToReg_reg=0;
-                RegWrite_reg=1;
-                MemRead_reg=0;
-                MemWrite_reg=0;
-                Branch_reg=0;
-                ALUOp_reg=2'b10;
-                Jump_reg=0;
-            end
-            6'b100011: begin
-                RegDst_reg=0;
-                ALUSrc_reg=1;
-                MemToReg_reg=1;
-                RegWrite_reg=1;
-                MemRead_reg=1;
-                MemWrite_reg=0;
-                Branch_reg=0;
-                ALUOp_reg=2'b00;
-                Jump_reg=0;
-            end
-            6'b101011: begin
-                ALUSrc_reg=1;
-                RegWrite_reg=0;
-                MemRead_reg=0;
-                MemWrite_reg=1;
-                Branch_reg=0;
-                ALUOp_reg=2'b00;
-                Jump_reg=0;
-            end
-            6'b000100: begin
-                ALUSrc_reg=0;
-                RegWrite_reg=0;
-                MemRead_reg=0;
-                MemWrite_reg=0;
-                Branch_reg=1;
-                ALUOp_reg=2'b01;
-                Jump_reg=0;
-            end
-            6'b000010: begin
-                RegDst_reg=0;
-                ALUSrc_reg=0;
-                MemToReg_reg=0;
-                RegWrite_reg=0;
-                MemRead_reg=0;
-                MemWrite_reg=0;
-                Branch_reg=0;
-                Jump_reg=1;
-            end
-        endcase
-    end
-
+assign RegDst= (opcode==6'b0);
+assign Jump=(opcode==`J)   || (opcode==`JAL);
+assign Branch=(opcode==`BEQ);
+assign MemRead=(opcode==`LW)  || (opcode==`LB);
+assign MemToReg=(opcode==`LW) || (opcode==`LB);
+assign MemWrite=(opcode==`SW)  || (opcode==`SB);
+assign ALUSrc=(opcode!=6'b0)&& (opcode!=`BEQ)
+assign RegWrite=(opcode!=`SW)   &&  (opcode!=`SB)  &&  
+                   (opcode!=`BEQ)  && 
+                   (opcode!=`J)    &&  
+                   (!((opcode==6'd0) &&  (funct==`JR)));
+assign ALUOp[1]=(opcode==6'b0);
+assign ALUOp[0]=(opcode==`BEQ);
 
 
 
