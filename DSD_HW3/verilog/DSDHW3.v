@@ -337,7 +337,7 @@ assign MemToReg=MemToReg_reg;
 assign MemWrite=MemRead_reg;
 assign ALUSrc=ALUSrc_reg;
 assign RegWrite=RegWrite_reg;
-assign ALUOp=ALUOp_reg;
+assign ALUOp[1:0]=ALUOp_reg[1:)];
 
 always@(*)  
     begin  
@@ -350,7 +350,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=0;
                 Branch_reg=0;
-                ALUOp_reg=2'b10;
+                ALUOp_reg[1:0]=2'b10;
                 Jump_reg=0;
             end
             6'b100011: begin
@@ -361,7 +361,7 @@ always@(*)
                 MemRead_reg=1;
                 MemWrite_reg=0;
                 Branch_reg=0;
-                ALUOp_reg=2'b00;
+                ALUOp_reg[1:0]=2'b00;
                 Jump_reg=0;
             end
             6'b101011: begin
@@ -370,7 +370,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=1;
                 Branch_reg=0;
-                ALUOp_reg=2'b00;
+                ALUOp_reg[1:0]=2'b00;
                 Jump_reg=0;
             end
             6'b000100: begin
@@ -379,7 +379,7 @@ always@(*)
                 MemRead_reg=0;
                 MemWrite_reg=0;
                 Branch_reg=1;
-                ALUOp_reg=2'b01;
+                ALUOp_reg[1:0]=2'b01;
                 Jump_reg=0;
             end
             6'b000010: begin
@@ -459,6 +459,7 @@ module Alu_control(
                     6'b100100:Alu_control_reg=0000;
                     6'b100101:Alu_control_reg=0001; //or
                     6'b101010:Alu_control_reg=0111;
+                end
                     default: Alu_control_reg=0010;
                 endcase
             default: Alu_control_reg=0010;
