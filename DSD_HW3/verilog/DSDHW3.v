@@ -344,7 +344,7 @@ assign Branch=(opcode==`BEQ);
 assign MemRead=(opcode==`LW)  || (opcode==`LB);
 assign MemToReg=(opcode==`LW) || (opcode==`LB);
 assign MemWrite=(opcode==`SW)  || (opcode==`SB);
-assign ALUSrc=(opcode!=6'b0)&& (opcode!=`BEQ)
+assign ALUSrc=(opcode!=6'b0)&& (opcode!=`BEQ);
 assign RegWrite=(opcode!=`SW)   &&  (opcode!=`SB)  &&  (opcode!=`BEQ)  && (opcode!=`J)    &&  (!((opcode==6'd0) &&  (funct==`JR)));
 assign ALUOp[1]=(opcode==6'b0);
 assign ALUOp[0]=(opcode==`BEQ);
