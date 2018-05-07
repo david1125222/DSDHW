@@ -115,8 +115,10 @@ module SingleCycle_MIPS(
     assign ReadData2=register_rd_data2;
     assign IR_addr=pc;
     assign RF_writedata=register_wr_data;
+    assign ALU_data1 = register_rd_data1;
+
     always@(posedge clk)begin
-        $display("PC=%h,IR_addr=%h,pc_plus_4=%h,Mux_out_a=%h,PCnext=%h",pc,IR_addr,pc_plus_4,Mux_out_a,PCnext);
+        $display("PC=%h,ReadDataMem=%h,register_wr_data%h",pc,ReadDataMem,register_wr_data);
     end
 
 SignExtend SignExtend_0(Inst_15_0,Inst_15_0_sign_extend);
@@ -192,12 +194,20 @@ mux_2x1 mux_2x1_c(
     .out(register_wr_data)
 );
 
-mux_2x1 mux_2x1_d(
+mux_2x1_5bit mux_2x1_d(
     .ip1(Inst_15_11), 
     .ip0(Inst_20_16), 
     .sel(RegDst), 
     .out(register_wr_addr)
 );
+
+mux_2x1 mux_2x1_e(
+    .ip1(Inst_15_0_sign_extend), 
+    .ip0(register_rd_data2, 
+    .sel(ALUSrc), 
+    .out(ALU_data2)
+);
+
 
 PC PC_0(
     .clk(clk),
@@ -235,10 +245,12 @@ module Registers(
 
     always@(posedge clk)  
     begin 
-        read_data_1_reg<=register_file[read_register_1];
-        read_data_2_reg<=register_file[read_register_2];
-        if(RegWrite) begin
-            register_file[write_register]<=write_data;
+        if(rst_n)begin
+            read_data_1_reg<=register_file[read_register_1];
+            read_data_2_reg<=register_file[read_register_2];
+            if(RegWrite) begin
+                register_file[write_register]<=write_data;
+            end
         end
     end
 
