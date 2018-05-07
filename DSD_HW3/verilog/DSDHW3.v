@@ -118,7 +118,7 @@ module SingleCycle_MIPS(
     assign ALU_data1 = register_rd_data1;
 
     always@(negedge clk)begin
-        $display("PC=%h,ReadDataMem=%h,register_wr_data%h",pc,ReadDataMem,register_wr_data);
+        $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,wen=%b,cen=%b",pc,ReadDataMem,register_wr_data,WEN,CEN);
     end
 
 SignExtend SignExtend_0(Inst_15_0,Inst_15_0_sign_extend);
@@ -190,7 +190,7 @@ mux_2x1 mux_2x1_b(
 mux_2x1 mux_2x1_c(
     .ip1(ReadDataMem), 
     .ip0(ALU_Result), 
-    .sel(Jump), 
+    .sel(MemtoReg), 
     .out(register_wr_data)
 );
 
