@@ -197,6 +197,13 @@ mux_2x1 mux_2x1_d(
     .sel(RegDst), 
     .out(register_wr_addr)
 );
+
+PC PC_0(
+    .clk(clk),
+    .rst_n(rst_n),
+    .PCin(PCnext),
+    .PCnext(pc)
+);
 //==== combinational part =================================
 
 
@@ -437,7 +444,7 @@ module PC(
     output [31:0] PCnext;
     assign PCnext=PC_value;
 
-    always@(posedge rst_n)
+    always@(negedge rst_n)
     begin
         PC_value<=31'b0;
     end
