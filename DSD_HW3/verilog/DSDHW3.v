@@ -345,7 +345,7 @@ assign MemRead=(instruction==`LW)  || (instruction==`LB);
 assign MemToReg=(instruction==`LW) || (instruction==`LB);
 assign MemWrite=(instruction==`SW)  || (instruction==`SB);
 assign ALUSrc=(instruction!=6'b0)&& (instruction!=`BEQ);
-assign RegWrite=(instruction!=`SW)   &&  (instruction!=`SB)  &&  (instruction!=`BEQ)  && (instruction!=`J)    &&  (!((instruction==6'd0) &&  (funct==`JR)));
+assign RegWrite=(instruction!=`SW)   &&  (instruction!=`SB)  &&  (instruction!=`BEQ)  && (instruction!=`J)    &&  (!((instruction==6'd0) ));
 assign ALUOp[1]=(instruction==6'b0);
 assign ALUOp[0]=(instruction==`BEQ);
 
