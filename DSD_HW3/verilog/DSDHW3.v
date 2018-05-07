@@ -110,7 +110,7 @@ module SingleCycle_MIPS(
     assign WEN =   (~MemWrite) | MemRead;
     assign CEN = MemRead | MemWrite;
     assign OEN = 0;
-    assign A = alu_data2;
+    assign A = ALU_data2;
     assign ReadData2=register_rd_data2;
 
 SignExtend SignExtend_0(Inst_15_0,Inst_15_0_sign_extend);
@@ -213,6 +213,7 @@ module Registers(
     read_data_2
 );
     input RegWrite;
+    input clk,rst_n;
     input [4:0] read_register_1,read_register_2,write_register;
     input [31:0] write_data;
     output [31:0] read_data_1,read_data_2;
@@ -276,9 +277,11 @@ module Add_4(
 );
     input [31:0] add_in;
     output [31:0] add_out;
+    reg [31:0] add_value;
+    
     assign add_out=add_value;
     
-    reg [31:0] add_value;
+    
     always@(*)
     begin
         add_value=add_in+4;
@@ -293,9 +296,11 @@ module Add(
 );
     input [31:0] add_in1,add_in2;
     output [31:0] add_out;
+    reg [31:0] add_value;
+    
     assign add_out=add_value;
     
-    reg [31:0] add_value;
+    
     always@(*)
     begin
         add_value=add_in1+add_in2;
@@ -388,6 +393,7 @@ always@(*)
                 Jump_reg=1;
             end
         endcase
+    end
 
 
 
