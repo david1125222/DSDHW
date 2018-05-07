@@ -337,7 +337,7 @@ assign MemToReg=MemToReg_reg;
 assign MemWrite=MemRead_reg;
 assign ALUSrc=ALUSrc_reg;
 assign RegWrite=RegWrite_reg;
-assign ALUOp[1:0]=ALUOp_reg[1:)];
+assign ALUOp[1:0]=ALUOp_reg[1:0];
 
 always@(*)  
     begin  
@@ -459,9 +459,9 @@ module Alu_control(
                     6'b100100:Alu_control_reg=0000;
                     6'b100101:Alu_control_reg=0001; //or
                     6'b101010:Alu_control_reg=0111;
-                end
                     default: Alu_control_reg=0010;
                 endcase
+                end
             default: Alu_control_reg=0010;
         endcase
     end
