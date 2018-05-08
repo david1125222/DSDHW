@@ -436,19 +436,19 @@ module Alu_control(
     always@(*)  
     begin  
         case (ALUOp==2'b00)
-            2'b00: Alu_control_reg=2'b0010;
-            2'b01: Alu_control_reg=2'b0110;
+            2'b00: Alu_control_reg=4'b0010;
+            2'b01: Alu_control_reg=4'b0110;
             2'b10: begin
                 case(instruction_5_0)
-                    6'b100000:Alu_control_reg=2'b0010;
-                    6'b100010:Alu_control_reg=2'b0110;
-                    6'b100100:Alu_control_reg=2'b0000;
-                    6'b100101:Alu_control_reg=2'b0001; //or
-                    6'b101010:Alu_control_reg=2'b0111;
-                    default: Alu_control_reg=2'b0010;
+                    6'b100000:Alu_control_reg=4'b0010;
+                    6'b100010:Alu_control_reg=4'b0110;
+                    6'b100100:Alu_control_reg=4'b0000;
+                    6'b100101:Alu_control_reg=4'b0001; //or
+                    6'b101010:Alu_control_reg=4'b0111;
+                    default: Alu_control_reg=4'b0010;
                 endcase
                 end
-            default: Alu_control_reg=2'b0010;
+            default: Alu_control_reg=4'b0010;
         endcase
     end
 endmodule
