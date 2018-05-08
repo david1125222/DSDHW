@@ -434,7 +434,7 @@ module Alu_control(
 
     always@(*)  
     begin  
-        case (ALUOp)
+        case (ALUOp==2'b00)
             2'b00: Alu_control_reg=0010;
             2'b01: Alu_control_reg=0110;
             2'b10: begin
