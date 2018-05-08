@@ -111,11 +111,13 @@ module SingleCycle_MIPS(
     assign WEN =   !MemWrite;
     assign CEN =(!opcode)? 1:0;
     assign OEN = 0;
-    assign A = ALU_data2;
+    assign A = ALU_Result[8:2];
     assign ReadData2=register_rd_data2;
     assign IR_addr=pc;
     assign RF_writedata=register_wr_data;
     assign ALU_data1 = register_rd_data1;
+    assign register_rd_addr1 = Inst_25_21;
+    assign register_rd_addr2 = Inst_20_16;
 
     always@(negedge clk)begin
         $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,Alu_data1=%h,ALU_data2=%h,Inst_15_0_sign_extend=%h",pc,ReadDataMem,register_wr_data,ALU_data1,ALU_data2,Inst_15_0_sign_extend);
