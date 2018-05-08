@@ -120,7 +120,7 @@ module SingleCycle_MIPS(
     assign register_rd_addr2 = Inst_20_16;
 
     always@(negedge clk)begin
-        $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,Alu_data1=%h,ALU_data2=%h,Inst_15_0_sign_extend=%h",pc,ReadDataMem,register_wr_data,ALU_data1,ALU_data2,Inst_15_0_sign_extend);
+        $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,Alu_data1=%h,ALU_data2=%h,register_rd_addr1=%h",pc,ReadDataMem,register_wr_data,ALU_data1,ALU_data2,register_rd_addr1);
     end
 
 SignExtend SignExtend_0(Inst_15_0,Inst_15_0_sign_extend);
