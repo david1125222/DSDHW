@@ -99,6 +99,7 @@ module SingleCycle_MIPS(
     wire [31:0] br_signext_sl2;
     wire [31:0] JumpAddr;
     wire [31:0] Mux_sel_a,Mux_out_a;
+    wire 
 
     assign opcode = IR[31:26];
     assign Inst_5_0  = IR[5:0];
@@ -206,7 +207,7 @@ mux_2x1_5bit mux_2x1_d(
 
 mux_2x1 mux_2x1_e(
     .ip1(Inst_15_0_sign_extend), 
-    .ip0(register_rd_data2), 
+    .ip0(ReadData2), 
     .sel(ALUSrc),
     .out(ALU_data2)
 );
