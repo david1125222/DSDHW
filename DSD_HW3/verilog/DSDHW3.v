@@ -249,7 +249,7 @@ module Registers(
     input [31:0] write_data;
     output [31:0] read_data_1,read_data_2;
     reg [31:0] read_data_1_reg,read_data_2_reg;
-    reg [31:0] register_file [0:5];
+    reg [31:0] register_file [1:31];
     
     assign read_data_1 = (read_register_1==5'd0) ? 32'd0 : register_file[read_register_1]; 
     assign read_data_2 = (read_register_2==5'd0) ? 32'd0 : register_file[read_register_2]; 
