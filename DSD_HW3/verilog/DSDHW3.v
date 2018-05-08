@@ -147,7 +147,7 @@ Registers Registers_0(
 Alu Alu_0(
     .alu_data1(ALU_data1),
     .alu_data2(ALU_data2),
-    .alu_ctrl(Alu_control),
+    .alu_ctrl(ALU_control),
     .zero(zero),
     .alu_result(ALU_Result)
 );
