@@ -77,7 +77,7 @@ module SingleCycle_MIPS(
     wire MemWrite;
     wire Jump;
     wire [1:0] ALUOp;
-    wire Branch;a
+    wire Branch;
     //wire PCSrc1;
     wire zero;
     //wire PCSrc2;
