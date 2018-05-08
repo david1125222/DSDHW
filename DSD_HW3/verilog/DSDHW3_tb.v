@@ -65,7 +65,7 @@ module SingleCycle_tb;
 		//	$display("data_mem[%d] = %h", i, i_MIPS.Data_memory.mem[i]);
 		//end
 		
-		$dumpfile("SingleCycleRTL.vcd");
+		$dumpfile("SingleCycleRTL1.vcd");
 		$dumpvars;
 		$fsdbDumpfile("SingleCycleRTL.fsdb");			
 		$fsdbDumpvars;								
