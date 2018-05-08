@@ -248,7 +248,7 @@ module Registers(
     input [31:0] write_data;
     output [31:0] read_data_1,read_data_2;
     reg [31:0] read_data_1_reg,read_data_2_reg;
-    reg [31:0] register_file [1:31];
+    reg [31:0] register_file [0:5];
     
     assign read_data_1 = (read_register_1==5'd0) ? 32'd0 : register_file[read_register_1]; 
     assign read_data_2 = (read_register_2==5'd0) ? 32'd0 : register_file[read_register_2]; 
@@ -383,7 +383,7 @@ assign MemRead=(instruction==`LW)  || (instruction==`LB);
 assign MemToReg=(instruction==`LW) || (instruction==`LB);
 assign MemWrite=(instruction==`SW)  || (instruction==`SB);
 assign ALUSrc=(instruction!=6'b0)&& (instruction!=`BEQ);
-assign RegWrite=(instruction!=`SW)   &&  (instruction!=`SB)  &&  (instruction!=`BEQ)  && (instruction!=`J)    &&  (!((instruction==6'd0) ));
+assign RegWrite=(opcode!=`SW) && (opcode!=`BEQ) && (opcode!=`J) && (!((opcode==6'd0) &&  (func==`JR))); 
 assign ALUOp[1]=(instruction==6'b0);
 assign ALUOp[0]=(instruction==`BEQ);
 
