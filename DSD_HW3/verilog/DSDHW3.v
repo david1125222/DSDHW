@@ -244,6 +244,9 @@ module Registers(
     output [31:0] read_data_1,read_data_2;
     reg [31:0] read_data_1_reg,read_data_2_reg;
     reg [31:0] register_file [4:0];
+    
+    assign read_data_1 = read_data_1_reg;
+    assign read_data_2 = read_data_2_reg;
 
     always@(posedge clk)  
     begin 
@@ -412,6 +415,7 @@ module Alu(
     end
 
     assign alu_result=result;
+    assign zero = result[31];
 endmodule
 
 module Alu_control(
@@ -478,9 +482,11 @@ module SignExtend(
     input [15:0] instruction;
     output [31:0] instruction_out;
     reg [31:0] instruction_value;
+    assign instruction_out=instruction_value;
+
     always@(*)
     begin
-        instruction_value[15:0] <= { {16{instruction[15]}}, instruction[15:0]};
+        instruction_value[31:0] = { {16{instruction[15]}}, instruction[15:0]};
     end
 endmodule
 
