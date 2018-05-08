@@ -248,7 +248,7 @@ module Registers(
     input [31:0] write_data;
     output [31:0] read_data_1,read_data_2;
     reg [31:0] read_data_1_reg,read_data_2_reg;
-    reg [31:0] register_file [0:4];
+    reg [31:0] register_file [1:31];
     
     assign read_data_1 = read_data_1_reg;
     assign read_data_2 = read_data_2_reg;
