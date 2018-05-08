@@ -57,9 +57,9 @@ module SingleCycle_MIPS(
 
 //==== reg/wire declaration ===============================
     wire [25:0] Inst_25_0;
-    wire [4:0] Inst_25_21;
-    wire [4:0] Inst_20_16;
-    wire [4:0] Inst_15_11;
+    wire [5:0] Inst_25_21;
+    wire [5:0] Inst_20_16;
+    wire [5:0] Inst_15_11;
     wire [15:0] Inst_15_0;
     //wire [31:0] shamt; //Shift Amount for SLL and SRL??
     wire [31:0] pc;        //Program Counter
