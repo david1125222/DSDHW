@@ -67,7 +67,7 @@ module SingleCycle_MIPS(
     wire [31:0] PCnext;
     wire [5:0] opcode;
     wire [5:0] funct;
-    wire [31:0] ReadData1;
+    //wire [31:0] ReadData1;
     //wire bcond;
     wire RegDst;
     wire ALUSrc;
@@ -77,7 +77,7 @@ module SingleCycle_MIPS(
     wire MemWrite;
     wire Jump;
     wire [1:0] ALUOp;
-    wire Branch;
+    wire Branch;a
     //wire PCSrc1;
     wire zero;
     //wire PCSrc2;
@@ -87,6 +87,7 @@ module SingleCycle_MIPS(
     wire [31:0] ALU_data2;
     wire [4:0] register_rd_addr1;
     wire [4:0] register_rd_addr2;
+
     wire [4:0] register_wr_addr;
     wire [31:0] register_wr_data;
 
@@ -116,7 +117,7 @@ module SingleCycle_MIPS(
 
     assign IR_addr=pc;
     assign RF_writedata=register_wr_data;
-    assign ALU_data1 = ReadData1;
+    //assign ALU_data1 = ReadData1;
     assign register_rd_addr1 = Inst_25_21;
     assign register_rd_addr2 = Inst_20_16;
 
@@ -140,7 +141,7 @@ Registers Registers_0(
     .read_register_2(register_rd_addr2),
     .write_register(register_wr_addr),
     .write_data(register_wr_data),
-    .read_data_1(ReadData1),
+    .read_data_1(ALU_data1) ,
     .read_data_2(ReadData2)
 );
    
