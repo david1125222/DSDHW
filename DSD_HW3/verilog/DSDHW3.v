@@ -163,6 +163,7 @@ Add_4 Add_4_0(
 
 Control Control_0(
     .instruction(opcode),
+    .func(Inst_5_0),
     .RegDst(RegDst),
     .Jump(Jump),
     .Branch(Branch),
@@ -350,6 +351,7 @@ endmodule
 
 module Control(
     instruction,
+    func,
     RegDst,
     Jump,
     Branch,
@@ -362,6 +364,7 @@ module Control(
 );
 
 input [5:0] instruction;
+input[5:0] func;
 output RegDst,Jump,Branch,MemRead,MemToReg,MemWrite,ALUSrc,RegWrite;
 output [1:0] ALUOp;
 reg RegDst_reg,Jump_reg,Branch_reg,MemRead_reg,MemToReg_reg,MemWrite_reg,ALUSrc_reg,RegWrite_reg;
@@ -375,6 +378,7 @@ reg ALUOp_reg[1:0];
 `define JR   6'b001000
 `define J    6'b000010
 `define JAL  6'b000011
+`define JR   6'b001000
 
 assign RegDst= (instruction==6'b0);
 assign Jump=(instruction==`J)   || (instruction==`JAL);
@@ -386,6 +390,7 @@ assign ALUSrc=(instruction!=6'b0)&& (instruction!=`BEQ);
 assign RegWrite=(instruction!=`SW) && (instruction!=`BEQ) && (instruction!=`J) && (!((instruction==6'd0) &&  (func==`JR))); 
 assign ALUOp[1]=(instruction==6'b0);
 assign ALUOp[0]=(instruction==`BEQ);
+assign _JR  = (instruction==6'b0) && (func==`JR);
 
 
 
