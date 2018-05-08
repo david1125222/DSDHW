@@ -67,6 +67,7 @@ module SingleCycle_MIPS(
     wire [31:0] PCnext;
     wire [5:0] opcode;
     wire [5:0] funct;
+    
     //wire [31:0] ReadData1;
     //wire bcond;
     wire RegDst;
