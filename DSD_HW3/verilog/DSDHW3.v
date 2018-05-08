@@ -427,7 +427,7 @@ module Alu_control(
 
     input [5:0] instruction_5_0;
     input [1:0] ALUOp;
-    output Alu_control;
+    output [3:0] Alu_control;
     reg Alu_control_reg;
 
     assign Alu_control=Alu_control_reg;
