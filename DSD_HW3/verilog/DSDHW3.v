@@ -298,6 +298,9 @@ module Registers(
             register_file[29]<=32'b0;
             register_file[30]<=32'b0;
             register_file[31]<=32'b0;
+            read_data_1_reg<=32'b0;
+            read_data_2_reg<=32'b0;
+
     end
 
 
