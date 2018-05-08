@@ -129,7 +129,7 @@ SignExtend SignExtend_0(Inst_15_0,Inst_15_0_sign_extend);
 Alu_control Alu_control_0(
     .instruction_5_0(Inst_5_0),
     .ALUOp(ALUOp),
-    .Alu_control(Alu_control)
+    .Alu_control(ALU_control)
 );
 
 Registers Registers_0(
