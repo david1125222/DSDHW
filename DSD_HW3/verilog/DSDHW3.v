@@ -111,6 +111,7 @@ module SingleCycle_MIPS(
     assign Inst_15_11  = IR[15:11];
     assign Inst_15_0   = IR[15:0];
     assign Inst_15_0_sign_extend_shift_2 = Inst_15_0_sign_extend<<2;
+    assign JumpAddr = Inst_15_0_sign_extend_shift_2 
     assign Mux_sel_a = Branch & zero;
     assign WEN =   !MemWrite;
     assign CEN =(!opcode)? 1:0;
