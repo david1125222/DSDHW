@@ -87,8 +87,7 @@ module SingleCycle_MIPS(
     wire [4:0] register_rd_addr2;
     wire [4:0] register_wr_addr;
     wire [31:0] register_wr_data;
-    wire [31:0] register_rd_data1;
-    wire [31:0] register_rd_data2;
+
     wire [31:0] Add_result;
     wire [31:0] mem_alu_data_out;
     wire [31:0] pc_plus_4;        //PC + 8 to be written to GPR[31] on JAL
@@ -112,10 +111,10 @@ module SingleCycle_MIPS(
     assign CEN =(!opcode)? 1:0;
     assign OEN = 0;
     assign A = ALU_Result[8:2];
-    assign ReadData2=register_rd_data2;
+
     assign IR_addr=pc;
     assign RF_writedata=register_wr_data;
-    assign ALU_data1 = register_rd_data1;
+    assign ALU_data1 = ReadData1;
     assign register_rd_addr1 = Inst_25_21;
     assign register_rd_addr2 = Inst_20_16;
 
@@ -139,8 +138,8 @@ Registers Registers_0(
     .read_register_2(register_rd_addr2),
     .write_register(register_wr_addr),
     .write_data(register_wr_data),
-    .read_data_1(register_rd_data1),
-    .read_data_2(register_rd_data2)
+    .read_data_1(ReadData1),
+    .read_data_2(ReadData2)
 );
    
 Alu Alu_0(
