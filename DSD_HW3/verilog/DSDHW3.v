@@ -436,6 +436,7 @@ module Alu_control(
 
     assign Alu_control=Alu_control_reg;
 
+
     always@(*)  
     begin  
         case (ALUOp==2'b00)
