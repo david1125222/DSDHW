@@ -87,6 +87,7 @@ module SingleCycle_MIPS(
     wire [31:0] ALU_data2;
     wire [4:0] register_rd_addr1;
     wire [4:0] register_rd_addr2;
+    wire [31:0] register_rd_data2;
 
     wire [4:0] register_wr_addr;
     wire [31:0] register_wr_data;
@@ -120,6 +121,7 @@ module SingleCycle_MIPS(
     //assign ALU_data1 = ReadData1;
     assign register_rd_addr1 = Inst_25_21;
     assign register_rd_addr2 = Inst_20_16;
+    assign ReadData2 = register_rd_data2;
 
     always@(negedge clk)begin
         $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,Alu_data1=%h,ALU_data2=%h,register_rd_addr1=%h",pc,ReadDataMem,register_wr_data,ALU_data1,ALU_data2,register_rd_addr1);
@@ -142,7 +144,7 @@ Registers Registers_0(
     .write_register(register_wr_addr),
     .write_data(register_wr_data),
     .read_data_1(ALU_data1) ,
-    .read_data_2(ReadData2)
+    .read_data_2(register_rd_data2)
 );
    
 Alu Alu_0(
@@ -207,7 +209,7 @@ mux_2x1_5bit mux_2x1_d(
 
 mux_2x1 mux_2x1_e(
     .ip1(Inst_15_0_sign_extend), 
-    .ip0(ReadData2), 
+    .ip0(register_rd_data2), 
     .sel(ALUSrc),
     .out(ALU_data2)
 );
