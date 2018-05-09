@@ -420,7 +420,7 @@ assign RegWrite=(instruction!=`SW) && (instruction!=`BEQ) && (instruction!=`J) &
 assign ALUOp[1]=(instruction==6'b0);
 assign ALUOp[0]=(instruction==`BEQ);
 assign isJAL = (instruction==`JAL);
-assign isJR = (opcode==6'd0) && (funct==`JR);
+assign isJR = (instruction==6'd0) && (func==`JR);
 
 
 
