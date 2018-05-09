@@ -105,7 +105,9 @@ module SingleCycle_MIPS(
     wire [31:0] br_signext_sl2;
     wire [31:0] JumpAddr;
     wire Mux_sel_a;
-    wire [31:0] Mux_out_a,Mux_out_c,Mux_out_d,Mux_out_b;
+    wire [4:0] Mux_out_d;
+    wire [31:0] Mux_out_a,Mux_out_c,Mux_out_b;
+    reg reg_31=5'd31;
 
   
 
@@ -235,7 +237,7 @@ mux_2x1 mux_2x1_f(
 );
 
 mux_2x1_5bit mux_2x1_g(
-    .ip1(5'd31), 
+    .ip1(reg_31), 
     .ip0(Mux_out_d), 
     .sel(isJAL), 
     .out(register_wr_addr)
