@@ -1,0 +1,3 @@
+Command Line: /usr/spring_soft/verdi/cur/platform/LINUXAMD64/bin/vfast -silent -del . -o /home/raid7_2/userb04/b04044/DSDHW/DSD_HW3/verilog/SingleCycleRTL.vcd.fsdb -ft verilog /home/raid7_2/userb04/b04044/DSDHW/DSD_HW3/verilog/SingleCycleRTL.vcd
+uname(Linux cad16 3.10.0-693.21.1.el7.x86_64 #1 SMP Wed Mar 7 19:03:37 UTC 2018 x86_64)
+au time 0.048358 0.003930 0.010498 delta 16654336 16654336 total 90624000 90624000
