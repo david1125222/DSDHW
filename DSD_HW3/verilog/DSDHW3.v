@@ -104,7 +104,8 @@ module SingleCycle_MIPS(
     wire [31:0] Inst_15_0_sign_extend,Inst_15_0_sign_extend_shift_2; 
     wire [31:0] br_signext_sl2;
     wire [31:0] JumpAddr;
-    wire [31:0] Mux_sel_a,Mux_out_a,Mux_out_c,Mux_out_d,Mux_out_b;
+    wire Mux_sel_a;
+    wire [31:0] Mux_out_a,Mux_out_c,Mux_out_d,Mux_out_b;
 
   
 
