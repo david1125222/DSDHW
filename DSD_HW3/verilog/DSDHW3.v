@@ -179,7 +179,8 @@ Control Control_0(
     .MemWrite(MemWrite),
     .ALUSrc(ALUSrc),
     .RegWrite(RegWrite),
-    .isJAL(isJAL)
+    .isJAL(isJAL),
+    .isJR(isJR)
 );
 
 Add Add_0(
