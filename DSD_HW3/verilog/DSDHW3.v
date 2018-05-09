@@ -127,7 +127,7 @@ module SingleCycle_MIPS(
     assign register_rd_addr1 = Inst_25_21;
     assign register_rd_addr2 = Inst_20_16;
     assign ReadData2 = register_rd_data2;
-    assign reg_31=5'd31;
+    
 
     always@(negedge clk)begin
         $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,Alu_data1=%h,ALU_data2=%h,register_rd_addr1=%h",pc,ReadDataMem,register_wr_data,ALU_data1,ALU_data2,register_rd_addr1);
@@ -230,7 +230,7 @@ mux_2x1 mux_2x1_f(
 );
 
 mux_2x1_5bit mux_2x1_g(
-    .ip1(reg_31), 
+    .ip1(5'd31), 
     .ip0(Mux_out_d), 
     .sel(isJAL), 
     .out(register_wr_addr)
