@@ -77,6 +77,7 @@ module SingleCycle_MIPS(
     wire MemRead;
     wire MemWrite;
     wire Jump;
+    wire Jump_true;
     wire [1:0] ALUOp;
     wire Branch;
     wire isJAL;
@@ -121,6 +122,7 @@ module SingleCycle_MIPS(
     assign CEN =(!opcode)? 1:0;
     assign OEN = 0;
     assign A = ALU_Result[8:2];
+    assign Jump_true = (Jump==1'b1) ? 1:0;
 
     assign IR_addr=pc;
     assign RF_writedata=register_wr_data;
@@ -199,7 +201,7 @@ mux_2x1 mux_2x1_a(
 mux_2x1 mux_2x1_b(
     .ip1(JumpAddr), 
     .ip0(Mux_out_a), 
-    .sel(Jump), 
+    .sel(Jump_true), 
     .out(Mux_out_b)
 );
 
