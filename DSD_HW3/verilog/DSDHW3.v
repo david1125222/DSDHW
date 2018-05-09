@@ -295,7 +295,7 @@ module Registers(
 
     always@(negedge rst_n or posedge clk)
     begin
-        if(rst_n)begin
+        if(rst_n==1'b1)begin
             if(RegWrite) begin
                 register_file[write_register]<=write_data;
             end
