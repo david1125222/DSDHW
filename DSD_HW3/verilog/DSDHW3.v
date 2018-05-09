@@ -506,10 +506,10 @@ module PC(
 
     always@(negedge rst_n or posedge clk)
     begin
-        if(rst_n)
-            PC_value<=PCin;
-        else
+        if(rst_n==1'b0)
             PC_value<=31'b0;
+        else
+            PC_value<=PCin;
     end
 
 
