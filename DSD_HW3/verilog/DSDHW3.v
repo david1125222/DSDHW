@@ -79,6 +79,7 @@ module SingleCycle_MIPS(
     wire Jump;
     wire [1:0] ALUOp;
     wire Branch;
+    wire isJAL;
     //wire PCSrc1;
     wire zero;
     //wire PCSrc2;
@@ -101,7 +102,9 @@ module SingleCycle_MIPS(
     wire [31:0] Inst_15_0_sign_extend,Inst_15_0_sign_extend_shift_2; 
     wire [31:0] br_signext_sl2;
     wire [31:0] JumpAddr;
-    wire [31:0] Mux_sel_a,Mux_out_a;
+    wire [31:0] Mux_sel_a,Mux_out_a,Mux_out_c,Mux_out_d;
+    reg [4:0] reg_31;
+  
 
     assign opcode = IR[31:26];
     assign Inst_5_0  = IR[5:0];
@@ -124,6 +127,7 @@ module SingleCycle_MIPS(
     assign register_rd_addr1 = Inst_25_21;
     assign register_rd_addr2 = Inst_20_16;
     assign ReadData2 = register_rd_data2;
+    assign reg_31=5'd31;
 
     always@(negedge clk)begin
         $display("PC=%h,ReadDataMem=%h,register_wr_data=%h,Alu_data1=%h,ALU_data2=%h,register_rd_addr1=%h",pc,ReadDataMem,register_wr_data,ALU_data1,ALU_data2,register_rd_addr1);
@@ -174,6 +178,7 @@ Control Control_0(
     .MemWrite(MemWrite),
     .ALUSrc(ALUSrc),
     .RegWrite(RegWrite)
+    .isJAL(isJAL)
 );
 
 Add Add_0(
@@ -200,14 +205,14 @@ mux_2x1 mux_2x1_c(
     .ip1(ReadDataMem), 
     .ip0(ALU_Result), 
     .sel(MemtoReg), 
-    .out(register_wr_data)
+    .out(Mux_out_c)
 );
 
 mux_2x1_5bit mux_2x1_d(
     .ip1(Inst_15_11), 
     .ip0(Inst_20_16), 
     .sel(RegDst), 
-    .out(register_wr_addr)
+    .out(Mux_out_d)
 );
 
 mux_2x1 mux_2x1_e(
@@ -217,6 +222,19 @@ mux_2x1 mux_2x1_e(
     .out(ALU_data2)
 );
 
+mux_2x1 mux_2x1_f(
+    .ip1(pc_plus_4), 
+    .ip0(Mux_out_c), 
+    .sel(isJAL), 
+    .out(register_wr_data)
+);
+
+mux_2x1_5bit mux_2x1_g(
+    .ip1(reg_31), 
+    .ip0(Mux_out_d), 
+    .sel(isJAL), 
+    .out(register_wr_addr)
+);
 
 PC PC_0(
     .clk(clk),
@@ -361,12 +379,13 @@ module Control(
     ALUOp,
     MemWrite,
     ALUSrc,
-    RegWrite
+    RegWrite,
+    isJAL
 );
 
 input [5:0] instruction;
 input[5:0] func;
-output RegDst,Jump,Branch,MemRead,MemToReg,MemWrite,ALUSrc,RegWrite;
+output RegDst,Jump,Branch,MemRead,MemToReg,MemWrite,ALUSrc,RegWrite,isJAL;
 output [1:0] ALUOp;
 reg RegDst_reg,Jump_reg,Branch_reg,MemRead_reg,MemToReg_reg,MemWrite_reg,ALUSrc_reg,RegWrite_reg;
 reg ALUOp_reg[1:0];
@@ -392,6 +411,7 @@ assign RegWrite=(instruction!=`SW) && (instruction!=`BEQ) && (instruction!=`J) &
 assign ALUOp[1]=(instruction==6'b0);
 assign ALUOp[0]=(instruction==`BEQ);
 assign _JR  = (instruction==6'b0) && (func==`JR);
+assign isJAL = (instruction==`JAL);
 
 
 
