@@ -333,6 +333,7 @@ module Registers(
         else begin
             if(RegWrite) begin
                 register_file[write_register]<=write_data;
+            end
         end
     end
 
