@@ -107,7 +107,7 @@ module SingleCycle_MIPS(
     wire Mux_sel_a;
     wire [4:0] Mux_out_d;
     wire [31:0] Mux_out_a,Mux_out_c,Mux_out_b;
-    reg reg_31=5'd31;
+    reg [4:0] reg_31=5'd31;
 
   
 
