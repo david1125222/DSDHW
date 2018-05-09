@@ -542,7 +542,7 @@ input [31:0] ip0;
 input sel;
 output reg [31:0] out;
 
-always@(ip1 or ip2 or sel) begin
+always@(ip1 or ip0 or sel) begin
   if (sel==1'b1) begin
    out = ip1;
   end 
@@ -565,7 +565,7 @@ input [4:0] ip0;
 input sel;
 output reg [4:0] out;
 
-always@(ip1 or ip2 or sel) begin
+always@(ip1 or ip0 or sel) begin
   if (sel==1'b1) begin
    out = ip1;
   end 
