@@ -459,7 +459,7 @@ module Alu(
     end
 
     assign alu_result=result;
-    assign zero = result[31];
+    assign zero = (alu_ctrl == 4'b0110 && result == 0) ? 1 : 0;
 endmodule
 
 module Alu_control(
