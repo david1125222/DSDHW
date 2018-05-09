@@ -177,7 +177,7 @@ Control Control_0(
     .ALUOp(ALUOp),
     .MemWrite(MemWrite),
     .ALUSrc(ALUSrc),
-    .RegWrite(RegWrite)
+    .RegWrite(RegWrite),
     .isJAL(isJAL)
 );
 
