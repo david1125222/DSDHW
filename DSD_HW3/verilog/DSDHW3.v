@@ -286,12 +286,7 @@ module Registers(
 
     always@(negedge rst_n or posedge clk)
     begin
-        if(rst_n==1'b1)begin
-            if(RegWrite) begin
-                register_file[write_register]<=write_data;
-            end
-        end
-        else begin
+        if(rst_n==1'b0)begin
             register_file[1]<=32'b0;
             register_file[2]<=32'b0;
             register_file[3]<=32'b0;
@@ -325,6 +320,11 @@ module Registers(
             register_file[31]<=32'b0;
             read_data_1_reg<=32'b0;
             read_data_2_reg<=32'b0;  
+        end
+        else begin
+            if(RegWrite) begin
+                register_file[write_register]<=write_data;
+            end
         end
     end
 
