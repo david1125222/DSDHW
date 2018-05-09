@@ -80,6 +80,7 @@ module SingleCycle_MIPS(
     wire [1:0] ALUOp;
     wire Branch;
     wire isJAL;
+    wire isJR;
     //wire PCSrc1;
     wire zero;
     //wire PCSrc2;
@@ -102,8 +103,8 @@ module SingleCycle_MIPS(
     wire [31:0] Inst_15_0_sign_extend,Inst_15_0_sign_extend_shift_2; 
     wire [31:0] br_signext_sl2;
     wire [31:0] JumpAddr;
-    wire [31:0] Mux_sel_a,Mux_out_a,Mux_out_c,Mux_out_d;
-    reg [4:0] reg_31;
+    wire [31:0] Mux_sel_a,Mux_out_a,Mux_out_c,Mux_out_d,Mux_out_b;
+
   
 
     assign opcode = IR[31:26];
@@ -198,7 +199,7 @@ mux_2x1 mux_2x1_b(
     .ip1(JumpAddr), 
     .ip0(Mux_out_a), 
     .sel(Jump), 
-    .out(PCnext)
+    .out(Mux_out_b)
 );
 
 mux_2x1 mux_2x1_c(
@@ -234,6 +235,13 @@ mux_2x1_5bit mux_2x1_g(
     .ip0(Mux_out_d), 
     .sel(isJAL), 
     .out(register_wr_addr)
+);
+
+mux_2x1 mux_2x1_h(
+    .ip1(ALU_data1), 
+    .ip0(Mux_out_b), 
+    .sel(isJR), 
+    .out(PCnext)
 );
 
 PC PC_0(
@@ -380,12 +388,13 @@ module Control(
     MemWrite,
     ALUSrc,
     RegWrite,
-    isJAL
+    isJAL,
+    isJR
 );
 
 input [5:0] instruction;
 input[5:0] func;
-output RegDst,Jump,Branch,MemRead,MemToReg,MemWrite,ALUSrc,RegWrite,isJAL;
+output RegDst,Jump,Branch,MemRead,MemToReg,MemWrite,ALUSrc,RegWrite,isJAL,isJR;
 output [1:0] ALUOp;
 reg RegDst_reg,Jump_reg,Branch_reg,MemRead_reg,MemToReg_reg,MemWrite_reg,ALUSrc_reg,RegWrite_reg;
 reg ALUOp_reg[1:0];
@@ -410,8 +419,8 @@ assign ALUSrc=(instruction!=6'b0)&& (instruction!=`BEQ);
 assign RegWrite=(instruction!=`SW) && (instruction!=`BEQ) && (instruction!=`J) && (!((instruction==6'd0) &&  (func==`JR))); 
 assign ALUOp[1]=(instruction==6'b0);
 assign ALUOp[0]=(instruction==`BEQ);
-assign _JR  = (instruction==6'b0) && (func==`JR);
 assign isJAL = (instruction==`JAL);
+assign isJR = (opcode==6'd0) && (funct==`JR);
 
 
 
