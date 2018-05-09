@@ -504,15 +504,14 @@ module PC(
     output [31:0] PCnext;
     assign PCnext=PC_value;
 
-    always@(negedge rst_n)
-    begin
-        PC_value<=31'b0;
-    end
-    always@(posedge clk)
+    always@(negedge rst_n or posedge clk)
     begin
         if(rst_n)
             PC_value<=PCin;
+        else
+            PC_value<=31'b0;
     end
+
 
 endmodule
 
