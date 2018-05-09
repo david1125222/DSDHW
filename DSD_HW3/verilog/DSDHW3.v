@@ -282,16 +282,7 @@ module Registers(
     assign read_data_1 = (read_register_1==5'd0) ? 32'd0 : register_file[read_register_1]; 
     assign read_data_2 = (read_register_2==5'd0) ? 32'd0 : register_file[read_register_2]; 
 
-    always@(posedge clk)  
-    begin 
-        if(rst_n)begin
-            read_data_1_reg<=register_file[read_register_1];
-            read_data_2_reg<=register_file[read_register_2];
-            if(RegWrite) begin
-                register_file[write_register]<=write_data;
-            end
-        end
-    end
+
 
     always@(negedge rst_n or posedge clk)
     begin
