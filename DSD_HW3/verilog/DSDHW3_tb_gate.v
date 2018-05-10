@@ -2,7 +2,7 @@
 
 `timescale 1 ns/10 ps
 `define	H_CYCLE 10
-`define CYCLE 100
+`define CYCLE 20
 
 module SingleCycle_tb;
 
