@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version N-2017.09-SP2 for linux64 -- Nov 27, 2017
-#@ # Date:   Thu May 10 00:32:44 2018
+#@ # Date:   Fri May 11 14:25:58 2018
 #@ # Run by: b04044@cad16
 #@ 
 
@@ -42974,7 +42974,7 @@ gui_start
 #@ 
 #@ # -- End source /usr/cad/synopsys/synthesis/cur/auxx/tcllib/lib/iwidgets4.1/watch.itk
 
-read_file -format verilog {/home/raid7_2/userb04/b04044/DSDHW/DSD_HW3/verilog/DSDHW3.v}
+read_file -format verilog {/home/raid7_2/userb04/b04044/DSDHW/DSD_HW3/verilog/DSDHW3_David.v}
 set cycle  10
 set iodelay 6
 create_clock -name CLK -period $cycle [get_ports clk]
@@ -42987,8 +42987,53 @@ set_output_delay -clock CLK -max $iodelay [get_ports OEN]
 set_output_delay -clock CLK -max $iodelay [get_ports A]
 set_output_delay -clock CLK -max $iodelay [get_ports ReadData2]
 set_operating_conditions -min_library fast -min fast -max_library slow -max slow
-compile -exact_map -area_effort high
+set cycle  8
+set iodelay 6
+create_clock -name CLK -period $cycle [get_ports clk]
+set_dont_touch_network      [get_clocks CLK]
+set_fix_hold                [get_clocks CLK]
+set_input_delay  -clock CLK -max $iodelay [get_ports ReadDataMem]
+set_output_delay -clock CLK -max $iodelay [get_ports CEN]
+set_output_delay -clock CLK -max $iodelay [get_ports WEN]
+set_output_delay -clock CLK -max $iodelay [get_ports OEN]
+set_output_delay -clock CLK -max $iodelay [get_ports A]
+set_output_delay -clock CLK -max $iodelay [get_ports ReadData2]
+set_operating_conditions -min_library fast -min fast -max_library slow -max slow
+set cycle  8
+set iodelay 5
+create_clock -name CLK -period $cycle [get_ports clk]
+set_dont_touch_network      [get_clocks CLK]
+set_fix_hold                [get_clocks CLK]
+set_input_delay  -clock CLK -max $iodelay [get_ports ReadDataMem]
+set_output_delay -clock CLK -max $iodelay [get_ports CEN]
+set_output_delay -clock CLK -max $iodelay [get_ports WEN]
+set_output_delay -clock CLK -max $iodelay [get_ports OEN]
+set_output_delay -clock CLK -max $iodelay [get_ports A]
+set_output_delay -clock CLK -max $iodelay [get_ports ReadData2]
+set_operating_conditions -min_library fast -min fast -max_library slow -max slow
+compile
+compile_ultra -retime
 uplevel #0 { report_area }
 write_sdf -version 2.1 DSDHW3.sdf
 write -format verilog -hier -output DSDHW3.vg
 write -format ddc     -hier -output DSDHW3.ddc
+uplevel #0 { report_timing -path full -delay max -nworst 1 -max_paths 1 -significant_digits 2 -sort_by group }
+uplevel #0 { report_area }
+set cycle  6
+set iodelay 4
+create_clock -name CLK -period $cycle [get_ports clk]
+set_dont_touch_network      [get_clocks CLK]
+set_fix_hold                [get_clocks CLK]
+set_input_delay  -clock CLK -max $iodelay [get_ports ReadDataMem]
+set_output_delay -clock CLK -max $iodelay [get_ports CEN]
+set_output_delay -clock CLK -max $iodelay [get_ports WEN]
+set_output_delay -clock CLK -max $iodelay [get_ports OEN]
+set_output_delay -clock CLK -max $iodelay [get_ports A]
+set_output_delay -clock CLK -max $iodelay [get_ports ReadData2]
+set_max_area 0
+compile_ultra -retime
+write_sdf -version 2.1 DSDHW3.sdf
+write -format verilog -hier -output DSDHW3.vg
+write -format ddc     -hier -output DSDHW3.ddc
+uplevel #0 { report_area }
+uplevel #0 { report_area }
