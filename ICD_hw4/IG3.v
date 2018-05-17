@@ -77,7 +77,7 @@ always@(posedge clk or negedge clk or negedge  reset) begin
                     end
                 end
                 else begin
-                    done_reg=1'b1;
+                    done_reg<=1'b1;
                 end
 
         end
