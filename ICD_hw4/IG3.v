@@ -46,7 +46,7 @@ assign grad_do=grad;
 always@(posedge clk or negedge clk or negedge  reset) begin
     if(reset==1'b0)
         if(init) begin
-            if(clk) begin
+
                 if(counter<3) begin
                     img_addr_reg<=counter;
                     counter<=counter+1;
@@ -61,26 +61,10 @@ always@(posedge clk or negedge clk or negedge  reset) begin
                     counter<=0;
                     init<=1'b0;
                 end
-            end
-            else begin
-                if(counter<2) begin
-                    case (counter)
-                        16'h0001:x_1=img_di;
-                        16'h0002:x_2=img_di;
-                    endcase
-                end
-                else if(counter == 3) begin
-                    x_3=img_di;
-                    grad_addr_reg=0;           
-                end
-                else begin
-                    counter<=0;
-                    init<=1'b0;
-                end
-            end
+
         end
         else begin
-            if(clk) begin
+
                 if(counter<65280) begin
                     if(cal) begin
                         img_addr_reg<=counter+1;
@@ -95,27 +79,13 @@ always@(posedge clk or negedge clk or negedge  reset) begin
                 else begin
                     done_reg=1'b1;
                 end
-            end
-            else begin
-                if(counter<65280) begin
-                    if(cal) begin
-                        x_2=img_di;
-                        wr=1'b1;
-                        grad_addr_reg=counter-1;
-                    end
-                    else begin
-                        x_3=img_di;
-                        x_1=x_2;
-                        wr=1'b0;
-                    end
-                end
-            end
+
         end
     else begin
-        cal = 1'b0;
-        ctrl=1'b0;
-        done_reg=1'b0;
-        counter=16'h0000;
+        cal <= 1'b0;
+        ctrl<=1'b0;
+        done_reg<=1'b0;
+        counter<=16'h0000;
         rd<=1'b1;
         init<=1'b1;
     end
@@ -154,8 +124,6 @@ always@(negedge clk) begin
                 end
             end
         end       
-
-
 end
 
 
