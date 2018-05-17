@@ -43,7 +43,7 @@ assign grad_do=grad;
 // sequential part
 
 //initial
-always@(posedge clk or negedge clk or negedge  reset) begin
+always@(posedge clk or negedge  reset) begin
     if(reset==1'b0)
         if(init) begin
 
