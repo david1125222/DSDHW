@@ -1,6 +1,7 @@
 # CHIP Level Constraint
 
-set cycle 5.0                # you can only modify this parameter
+set cycle 5.0                
+# you can only modify this parameter
 set t_in  [expr $cycle/2]
 set t_out 0.2
 
