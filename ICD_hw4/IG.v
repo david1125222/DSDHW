@@ -55,15 +55,10 @@ end
 always@(posedge clk) begin
 
         if(init) begin
-            if(counter<3) begin
+            if(counter<1) begin
                 img_addr_reg<=counter;
                 counter<=counter+1;
-                case (counter)
-                    16'h0001:img_addr_reg<=0;
-                    16'h0002:img_addr_reg<=1;
-                    16'h0003:img_addr_reg<=256;
-                default:  img_addr_reg<= 0;
-                endcase
+                img_addr_reg<=0;
             end
             else begin
                 counter<=0;
@@ -91,16 +86,8 @@ end
 always@(negedge clk) begin
 
         if(init) begin
-            if(counter<2) begin
-                case (counter)
-                    16'h0001:x_1=img_di;
-                    16'h0002:x_2=img_di;
-
-                endcase
-            end
-            else if(counter == 3) begin
-                x_3=img_di;
-                grad_addr_reg=0;           
+            if(counter<1) begin
+                x_2=img_di;
             end
             else begin
                 counter<=0;

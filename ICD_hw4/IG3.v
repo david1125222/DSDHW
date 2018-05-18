@@ -21,6 +21,7 @@ reg rd,wr,init;
 reg [15:0] img_addr_reg,grad_addr_reg;
 reg done_reg;
 wire signed[9:0] gx, gy;
+wire [15:0] counter_plus_1;
 
 
 
@@ -37,6 +38,8 @@ assign gx = x_2-x_1;
 assign gy = x_3-x_1;
 assign grad = {gx,gy};
 assign grad_do=grad;
+assign counter_plus_1 = counter+1;
+
 //reset
 
 //------------------------------------------------------------------
@@ -49,7 +52,7 @@ always@(posedge clk or negedge  reset) begin
 
                 if(counter<3) begin
                     img_addr_reg<=counter;
-                    counter<=counter+1;
+                    counter<=counter_plus_1;
                     case (counter)
                         16'h0001:img_addr_reg<=0;
                         16'h0002:img_addr_reg<=1;
@@ -101,7 +104,7 @@ always@(negedge clk) begin
 
                 endcase
             end
-            else if(counter == 3) begin
+            else if(counter == 2) begin
                 x_3=img_di;
                 grad_addr_reg=0;           
             end
